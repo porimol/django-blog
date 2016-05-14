@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
-from cms.models import Post
+from cms.models import Post, Category
 
 # Index view
 def index(request):
@@ -11,10 +11,13 @@ def index(request):
 # home view
 def home(request):
     blog_posts = Post.objects.order_by('-pub_date')[:10]
+    categories = Category.objects.all()
     template = loader.get_template('frontend/home.html')
     context = {
         'blog_posts': blog_posts,
+        'categories': categories,
     }
+
     return HttpResponse(template.render(context, request))
 
 # Get the single post details
@@ -25,3 +28,6 @@ def signle_post(request, post_id):
         'post': post,
     }
     return HttpResponse(template.render(context, request))
+
+def post_by_category(request, category_id):
+    return HttpResponse("Category "+ category_id)
