@@ -8,6 +8,9 @@ class Category(models.Model):
     slug = models.CharField(max_length=50)
     description = models.TextField(max_length=250)
 
+    def __unicode__(self):
+        return self.title
+
     def __str__(self):
         return self.name
 
@@ -16,6 +19,9 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
     slug = models.CharField(max_length=50)
     description = models.TextField(max_length=250)
+
+    def __unicode__(self):
+        return self.title
 
     def __str__(self):
         return self.name
@@ -29,6 +35,9 @@ class Post(models.Model):
     featured_photo = models.ImageField(upload_to = "featured_photos")
     description = models.TextField()
     pub_date = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.title
 
     def __str__(self):
         return self.title
