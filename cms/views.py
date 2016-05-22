@@ -23,9 +23,11 @@ def home(request):
 # Get the single post details
 def single_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+    categories = Category.objects.all()
     template = loader.get_template('frontend/single.html')
     context = {
         'post': post,
+        'categories': categories,
     }
     return HttpResponse(template.render(context, request))
 
