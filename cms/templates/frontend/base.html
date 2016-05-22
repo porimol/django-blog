@@ -125,7 +125,7 @@
                                 <ul class="list-unstyled">
                                     {% if categories %}
                                         {% for category in categories %}
-                                           <li><a href="/categories/{{ category.id }}/">{{ category.name }}</a></li>
+                                           <li><a href="{% url 'categories:post_by_category' category.id %}">{{ category.name }}</a></li>
                                         {% endfor %}
                                     {% else %}
                                         <p>No polls are available.</p>
