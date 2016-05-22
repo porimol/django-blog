@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', include('cms.urls')),
-    url(r'^posts/', include('cms.urls')),
-    url(r'^categories/', include('cms.urls')),
+    url(r'^posts/', include('cms.urls', namespace='posts')),
+    url(r'^categories/', include('cms.urls', namespace='categories')),
     url(r'^admin/', admin.site.urls),
 ]
