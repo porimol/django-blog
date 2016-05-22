@@ -7,7 +7,7 @@
 
             <!-- Author -->
             <p class="lead">
-                by <a href="#">Porimol</a>
+                Category : <a href="{% url 'categories:post_by_category' post.category_id %}">{{ post.category.name }}</a>
             </p>
 
             <!-- Date/Time -->
