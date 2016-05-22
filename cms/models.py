@@ -29,8 +29,8 @@ class Tag(models.Model):
 # Create post model.
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
-    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     status = models.BooleanField()
     featured_photo = models.ImageField(upload_to = "featured_photos")
     description = models.TextField()
