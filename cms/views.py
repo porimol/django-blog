@@ -32,4 +32,13 @@ def single_post(request, post_id):
     return HttpResponse(template.render(context, request))
 
 def post_by_category(request, category_id):
-    return HttpResponse("Category "+ category_id)
+    blog_posts = Post.objects.filter(category_id=category_id)
+    categories = Category.objects.all()
+    template = loader.get_template('frontend/home.html')
+
+    context = {
+        'blog_posts': blog_posts,
+        'categories': categories,
+    }
+
+    return HttpResponse(template.render(context, request))
