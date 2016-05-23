@@ -9,7 +9,7 @@ class Category(models.Model):
     description = models.TextField(max_length=250)
 
     def __unicode__(self):
-        return self.title
+        return self.name
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Tag(models.Model):
     description = models.TextField(max_length=250)
 
     def __unicode__(self):
-        return self.title
+        return self.name
 
     def __str__(self):
         return self.name
