@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'cms.apps.CmsConfig',
 ]
 
@@ -133,3 +134,10 @@ STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 MEDIA_URL = '/media/featured_photos/'
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': None,
+    },
+}

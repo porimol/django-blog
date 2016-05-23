@@ -20,7 +20,7 @@
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">{{ post.description|truncatechars:180 }}</p>
+                <p class="lead">{{ post.description|safe|truncatechars:180 }}</p>
                 <a href="{% url 'posts:single_post' post.id %}" class="btn btn-default">Read more >></a>
                 <hr>
 
