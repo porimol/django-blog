@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Category, Tag, Post
 
 class CategoryModelAdmin(admin.ModelAdmin):
-    list_display = [ "name", "slug", "description"]
+    list_display = ["name", "slug", "description"]
     list_filter = ["name", "description"]
-    search_fields = ['name', "slug", "description"]
+    search_fields = ["name", "slug", "description"]
+    list_display_links = ["name"]
     class Meta:
         model = Category
 
@@ -12,9 +13,10 @@ class CategoryModelAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryModelAdmin)
 
 class TagModelAdmin(admin.ModelAdmin):
-    list_display = [ "name", "slug", "description"]
+    list_display = ["name", "slug", "description"]
     list_filter = ["name", "description"]
-    search_fields = ['name', "slug", "description"]
+    search_fields = ["name", "slug", "description"]
+    list_display_links = ["name"]
     class Meta:
         model = Tag
 
@@ -22,9 +24,10 @@ class TagModelAdmin(admin.ModelAdmin):
 admin.site.register(Tag, TagModelAdmin)
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = [ "title", "description", "pub_date"]
+    list_display = ["title", "description", "pub_date"]
     list_filter = ["title", "description"]
-    search_fields = ['title', "description"]
+    search_fields = ["title", "description"]
+    list_display_links = ["title"]
     class Meta:
         model = Post
 
