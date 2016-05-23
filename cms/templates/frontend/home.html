@@ -16,11 +16,12 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img src="{{MEDIA_URL}}{{ post.featured_photo }}" style="width:100%; height: 215px;">
+                <img src="{{ MEDIA_URL }}{{ post.featured_photo }}" style="width:100%; height: 230px;">
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">{{ post.description }}</p>
+                <p class="lead">{{ post.description|truncatechars:180 }}</p>
+                <a href="{% url 'posts:single_post' post.id %}" class="btn btn-default">Read more >></a>
                 <hr>
 
             {% endfor %}
