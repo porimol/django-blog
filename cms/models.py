@@ -32,7 +32,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     status = models.BooleanField()
-    featured_photo = models.ImageField(upload_to = "featured_photos")
+    featured_photo = models.ImageField(upload_to = "featured_photos", null=True, blank=True)
     description = models.TextField()
     pub_date = models.DateTimeField()
 

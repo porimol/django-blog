@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -129,5 +130,5 @@ STATIC_ROOT = BASE_DIR + '/static/'
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE_ROOT = PROJECT_ROOT
 
+MEDIA_URL = '/media/featured_photos/'
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
-MEDIA_URL = '/featured_photos/'

@@ -16,8 +16,11 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-
+            {% if post.featured_photo %}
+                <img src="{{MEDIA_URL}}{{ post.featured_photo }}" style="width:100%; height: 215px;">
+            {% else %}
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+            {% endif %}
             <hr>
 
             <!-- Post Content -->
