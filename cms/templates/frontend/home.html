@@ -13,7 +13,6 @@
 
                 <!-- Date/Time -->
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.pub_date }}</p>
-
                 <hr>
 
                 <!-- Preview Image -->
@@ -26,6 +25,12 @@
 
             {% endfor %}
         {% else %}
-            <p>No polls are available.</p>
+            <div class="jumbotron" style="text-align:center;">
+                <h1>Nothing Found!</h1>
+                <p>Sorry, but nothing matched your search terms. Please try again with some different keywords.</p>
+                <p>
+                    <a role="button" href="/" class="btn btn-lg btn-primary">Go Back To Home »</a>
+                </p>
+            </div>
         {% endif %}
     {% endblock %}

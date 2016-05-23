@@ -107,12 +107,14 @@
                     <div class="well">
                         <h4>Blog Post Search</h4>
                         <div class="input-group">
-                            <input type="text" class="form-control">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                            </span>
+                            <form method="get" action="{% url 'posts:post_query' %}">
+                                <input type="text" name="q" value="{{ query_string }}" class="form-control" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </form>
                         </div>
                         <!-- /.input-group -->
                     </div>
