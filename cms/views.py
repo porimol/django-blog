@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from django.db.models import Q
-from cms.models import Post, Category
+from cms.models import Post, Category, CategoryToPost
 
 # Index view
 def index(request):
@@ -12,7 +12,7 @@ def index(request):
 
 # home view
 def home(request):
-    post_list = Post.objects.order_by('-pub_date')
+    post_list = Post.objects.filter(status=True).order_by('-pub_date')
     paginator = Paginator(post_list, 5) # Show 25 contacts per page
     page = request.GET.get('page')
 
@@ -47,7 +47,13 @@ def single_post(request, post_id):
 
 # Get the post by category
 def post_by_category(request, category_id):
-    blog_posts = Post.objects.filter(category_id=category_id)
+    post_categories = CategoryToPost.objects.filter(category_id=category_id)
+
+    post_ids = []
+    for post_category in post_categories:
+        post_ids.append(post_category.post_id)
+
+    blog_posts = Post.objects.filter(Q(pk__in=post_ids) & Q(status=True))
     categories = Category.objects.all()
     template = loader.get_template('frontend/home.html')
 
@@ -61,7 +67,7 @@ def post_by_category(request, category_id):
 # Get the post by search
 def post_query(request):
     query_string = request.GET.get('q')
-    blog_posts = Post.objects.filter(Q(title__contains=query_string) | Q(description__contains=query_string))
+    blog_posts = Post.objects.filter(Q(status=True) & Q(title__contains=query_string) | Q(description__contains=query_string))
     categories = Category.objects.all()
     template = loader.get_template('frontend/home.html')
 

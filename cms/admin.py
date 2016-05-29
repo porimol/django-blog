@@ -1,3 +1,4 @@
+import models
 from django.contrib import admin
 from .models import Category, Tag, Post
 
@@ -23,11 +24,18 @@ class TagModelAdmin(admin.ModelAdmin):
 # Register your Tag
 admin.site.register(Tag, TagModelAdmin)
 
+class CategoryToPostInline(admin.TabularInline):
+    model = models.CategoryToPost
+    extra = 1
+
 class PostModelAdmin(admin.ModelAdmin):
     list_display = ["title", "description", "pub_date"]
     list_filter = ["title", "description"]
     search_fields = ["title", "description"]
     list_display_links = ["title"]
+    fields = ('title', 'featured_photo', 'description', 'status', 'pub_date', 'tag',)
+    inlines = [CategoryToPostInline]
+
     class Meta:
         model = Post
 

@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
 
@@ -9,6 +9,9 @@ class Category(models.Model):
     slug = models.CharField(max_length=50)
     # description = models.TextField(max_length=250)
     description = RichTextField(config_name='awesome_ckeditor')
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
     def __unicode__(self):
         return self.name
@@ -30,8 +33,9 @@ class Tag(models.Model):
 
 # Create post model.
 class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category, blank=True, null=True, through='CategoryToPost')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     status = models.BooleanField()
     featured_photo = models.ImageField(upload_to = "featured_photos", null=True, blank=True)
@@ -43,3 +47,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class CategoryToPost(models.Model):
+    post = models.ForeignKey(Post)
+    category = models.ForeignKey(Category)

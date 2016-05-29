@@ -8,7 +8,10 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    Category : <a href="{% url 'categories:post_by_category' post.category_id %}">{{ post.category.name }}</a>
+                    Category :
+                    {% for category in post.categories.all %}
+                    <a href="{% url 'categories:post_by_category' category.id %}">{{ category.name }}</a>
+                    {% endfor %}
                 </p>
 
                 <!-- Date/Time -->
