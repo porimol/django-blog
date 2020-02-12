@@ -1,2 +1,2 @@
 django_ckeditor == 5.0.3
-Django == 1.11.23
+Django == 1.11.28
